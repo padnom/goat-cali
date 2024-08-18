@@ -1,6 +1,6 @@
 ﻿using LordOfTheRings;
 
-var fellowship = new FellowshipOfTheRingService();
+var fellowshipOfTheRingService = new FellowshipOfTheRingService();
 
 var characters = new List<Result<Character>>
                  {
@@ -19,7 +19,7 @@ foreach (Result<Character> characterResult in characters)
 {
     if (characterResult.IsSuccess)
     {
-        var addResult = fellowship.AddMember(characterResult.Value);
+        var addResult = fellowshipOfTheRingService.AddMember(characterResult.Value);
 
         if (!addResult.IsSuccess)
         {
@@ -32,25 +32,25 @@ foreach (Result<Character> characterResult in characters)
     }
 }
 
-Console.WriteLine(fellowship.ToString());
+Console.WriteLine(fellowshipOfTheRingService.ToString());
 
 var group1 = new List<string> { "Frodo", "Sam", };
 var group2 = new List<string> { "Merry", "Pippin", "Aragorn", "Boromir", };
 var group3 = new List<string> { "Legolas", "Gimli", "Gandalf the 🐐", };
 
-fellowship.MoveMembersToRegion(group1, "Rivendell").HandleResult();
-fellowship.MoveMembersToRegion(group2, "Moria").HandleResult();
-fellowship.MoveMembersToRegion(group3, "Lothlorien").HandleResult();
+fellowshipOfTheRingService.MoveMembersToRegion(group1, "Rivendell").HandleResult();
+fellowshipOfTheRingService.MoveMembersToRegion(group2, "Moria").HandleResult();
+fellowshipOfTheRingService.MoveMembersToRegion(group3, "Lothlorien").HandleResult();
 
 var group4 = new List<string> { "Frodo", "Sam", };
-fellowship.MoveMembersToRegion(group4, "Mordor").HandleResult();
-fellowship.MoveMembersToRegion(group4, "Shire").HandleResult();
+fellowshipOfTheRingService.MoveMembersToRegion(group4, "Mordor").HandleResult();
+fellowshipOfTheRingService.MoveMembersToRegion(group4, "Shire").HandleResult();
 
-fellowship.PrintMembersInRegion("Rivendell");
-fellowship.PrintMembersInRegion("Moria");
-fellowship.PrintMembersInRegion("Lothlorien");
-fellowship.PrintMembersInRegion("Mordor");
-fellowship.PrintMembersInRegion("Shire");
+fellowshipOfTheRingService.PrintMembersInRegion("Rivendell");
+fellowshipOfTheRingService.PrintMembersInRegion("Moria");
+fellowshipOfTheRingService.PrintMembersInRegion("Lothlorien");
+fellowshipOfTheRingService.PrintMembersInRegion("Mordor");
+fellowshipOfTheRingService.PrintMembersInRegion("Shire");
 
-fellowship.RemoveMember("Frodo").HandleResult();
-fellowship.RemoveMember("Sam").HandleResult();
+fellowshipOfTheRingService.RemoveMember("Frodo").HandleResult();
+fellowshipOfTheRingService.RemoveMember("Sam").HandleResult();

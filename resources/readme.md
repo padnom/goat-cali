@@ -92,5 +92,10 @@ feat: Add Fellowship class and Result pattern; update tests
 
 #### Refactor:
 
+refactor: Fellowship classes and update tests
+Refactored FellowshipOfTheRingService to delegate member management to the Fellowship class.
+Modified Fellowship and FellowshipTests classes to be sealed. Renamed Fellowship.Remove to RemoveMember with added logic.
+Updated FellowshipOfTheRingServiceTests to remove hasMembers parameter. Enhanced readme.md with new class and method documentation.
+Updated solution settings for code inspection highlighting.
 
 
