@@ -2,7 +2,7 @@
 using LordOfTheRings.App;
 
 namespace LordOfTheRings.Tests;
-public sealed class FellowshipOfTheRingTests
+public sealed class FellowshipManagerTests
 {
     private readonly FellowshipManager _fellowshipManager = new();
 
