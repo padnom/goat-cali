@@ -76,4 +76,21 @@ be added to a `Fellowship` instance.
 The test arranges a new `Fellowship` and `Character` with a `Weapon`, acts by adding the character to the fellowship, and asserts the success of the addition
 and the correct string representation of the fellowship.
 
+#### Green Test:
+
+feat: Add Fellowship class and Result pattern; update tests
+
+- Added `FluentAssertions` to `FellowshipTests.cs` for better assertions.
+- Introduced `Fellowship` class in `Fellowship.cs` with methods:
+    * `AddMember`, `GetCharacterByName`, `GetMembersInRegion`
+    * `MoveMembersToRegion`, `Remove`, `ToString`
+- Updated `readme.md` to reflect Result pattern and TDD approach.
+- Added green test for duplicate member handling.
+- Refactored `Program.cs` and `FellowshipOfTheRingServiceTest.cs`.
+- Added `CharacterTest.cs` for `Character` class validation.
+- Implemented red test for adding a valid character in `FellowshipTests`.
+
+#### Refactor:
+
+
 

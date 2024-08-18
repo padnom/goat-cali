@@ -1,5 +1,5 @@
 namespace LordOfTheRings;
-public class Fellowship
+public sealed class Fellowship
 {
     private readonly List<Character> _members = new();
 
@@ -56,9 +56,18 @@ public class Fellowship
         return Result.Success();
     }
 
-    public void Remove(Character character)
+    public Result RemoveMember(string name)
     {
-        _members.Remove(character);
+        Result<Character> characterResult = GetCharacterByName(name);
+
+        if (!characterResult.IsSuccess)
+        {
+            return characterResult;
+        }
+
+        _members.Remove(characterResult.Value);
+
+        return Result.Success();
     }
 
     public override string ToString()

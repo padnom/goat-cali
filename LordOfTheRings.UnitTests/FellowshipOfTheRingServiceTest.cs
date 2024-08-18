@@ -188,9 +188,9 @@ public sealed class FellowshipOfTheRingServiceTests
     }
 
     [Theory]
-    [InlineData("Rivendell", true)]
-    [InlineData("Mordor", false)]
-    public void PrintMembersInRegion_RegionHasMembers_PrintsCorrectly(string region, bool hasMembers)
+    [InlineData("Rivendell")]
+    [InlineData("Mordor")]
+    public void PrintMembersInRegion_RegionHasMembers_PrintsCorrectly(string region)
     {
         // Arrange
         var service = new FellowshipOfTheRingService();

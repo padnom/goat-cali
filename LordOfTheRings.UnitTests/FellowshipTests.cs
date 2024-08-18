@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
 
 namespace LordOfTheRings.Tests;
-public class FellowshipTests
+public sealed class FellowshipTests
 {
     [Fact]
     public void AddMember_ValidCharacter_ShouldAddSuccessfully()
