@@ -17,18 +17,18 @@ public class FellowshipOfTheRingServiceTests
 
         var character1 = new Character
                          {
-                             N = name,
-                             R = race,
-                             W = new Weapon { Name = weaponName, Damage = damage, },
-                             C = region,
+                             Name = name,
+                             Race = race,
+                             Weapon = new Weapon { Name = weaponName, Damage = damage, },
+                             CurrentRegion = region,
                          };
 
         var character2 = new Character
                          {
-                             N = name,
-                             R = race,
-                             W = new Weapon { Name = weaponName, Damage = damage, },
-                             C = region,
+                             Name = name,
+                             Race = race,
+                             Weapon = new Weapon { Name = weaponName, Damage = damage, },
+                             CurrentRegion = region,
                          };
 
         service.AddMember(character1);
@@ -59,10 +59,10 @@ public class FellowshipOfTheRingServiceTests
 
         var character = new Character
                         {
-                            N = name,
-                            R = race,
-                            W = weaponName == null ? null : new Weapon { Name = weaponName, Damage = damage, },
-                            C = "Shire",
+                            Name = name,
+                            Race = race,
+                            Weapon = weaponName == null ? null : new Weapon { Name = weaponName, Damage = damage, },
+                            CurrentRegion = "Shire",
                         };
 
         // Act & Assert
@@ -100,10 +100,10 @@ public class FellowshipOfTheRingServiceTests
 
         var character = new Character
                         {
-                            N = name,
-                            R = race,
-                            W = new Weapon { Name = weaponName, Damage = damage, },
-                            C = region,
+                            Name = name,
+                            Race = race,
+                            Weapon = new Weapon { Name = weaponName, Damage = damage, },
+                            CurrentRegion = region,
                         };
 
         // Act
@@ -123,7 +123,7 @@ public class FellowshipOfTheRingServiceTests
     {
         // Arrange
         var service = new FellowshipOfTheRingService();
-        service.AddMember(new Character { N = name, R = "Hobbit", W = new Weapon { Name = "Sting", Damage = 10, }, C = fromRegion, });
+        service.AddMember(new Character { Name = name, Race = "Hobbit", Weapon = new Weapon { Name = "Sting", Damage = 10, }, CurrentRegion = fromRegion, });
 
         var memberNames = new List<string> { name, };
 
@@ -148,7 +148,7 @@ public class FellowshipOfTheRingServiceTests
     {
         // Arrange
         var service = new FellowshipOfTheRingService();
-        service.AddMember(new Character { N = name, R = race, W = new Weapon { Name = weaponName, Damage = damage, }, C = fromRegion, });
+        service.AddMember(new Character { Name = name, Race = race, Weapon = new Weapon { Name = weaponName, Damage = damage, }, CurrentRegion = fromRegion, });
 
         var memberNames = new List<string> { name, };
 
@@ -172,7 +172,7 @@ public class FellowshipOfTheRingServiceTests
     {
         // Arrange
         var service = new FellowshipOfTheRingService();
-        service.AddMember(new Character { N = name, R = race, W = new Weapon { Name = weaponName, Damage = damage, }, C = fromRegion, });
+        service.AddMember(new Character { Name = name, Race = race, Weapon = new Weapon { Name = weaponName, Damage = damage, }, CurrentRegion = fromRegion, });
 
         var memberNames = new List<string> { name, };
 
@@ -190,8 +190,14 @@ public class FellowshipOfTheRingServiceTests
     {
         // Arrange
         var service = new FellowshipOfTheRingService();
-        service.AddMember(new Character { N = "Aragorn", R = "Human", W = new Weapon { Name = "Sword", Damage = 100, }, C = "Rivendell", });
-        service.AddMember(new Character { N = "Legolas", R = "Elf", W = new Weapon { Name = "Bow", Damage = 50, }, C = "Rivendell", });
+
+        service.AddMember(new Character
+                          {
+                              Name = "Aragorn", Race = "Human", Weapon = new Weapon { Name = "Sword", Damage = 100, },
+                              CurrentRegion = "Rivendell",
+                          });
+
+        service.AddMember(new Character { Name = "Legolas", Race = "Elf", Weapon = new Weapon { Name = "Bow", Damage = 50, }, CurrentRegion = "Rivendell", });
 
         // Act
         var act = () => service.PrintMembersInRegion(region);
@@ -225,7 +231,7 @@ public class FellowshipOfTheRingServiceTests
     {
         // Arrange
         var service = new FellowshipOfTheRingService();
-        service.AddMember(new Character { N = name, R = race, W = new Weapon { Name = weaponName, Damage = damage, }, C = region, });
+        service.AddMember(new Character { Name = name, Race = race, Weapon = new Weapon { Name = weaponName, Damage = damage, }, CurrentRegion = region, });
 
         // Act
         service.RemoveMember(name);
@@ -234,19 +240,27 @@ public class FellowshipOfTheRingServiceTests
         service.ToString().Should().NotContain(name);
     }
 
-    [Theory]
-    [InlineData("Gimli", "Axe", 80)]
-    public void UpdateCharacterWeapon_CharacterDoesNotExist_DoesNotThrow(string name, string newWeaponName, int newDamage)
+    [Fact]
+    public void UpdateCharacterWeapon_CharacterDoesNotExist_DoesNotThrow()
     {
         // Arrange
         var service = new FellowshipOfTheRingService();
 
+        var character = new Character
+                        {
+                            Name = "Gimli",
+                            Weapon = new Weapon { Name = "Sword", Damage = 1, },
+                            Race = "Dwarf",
+                        };
+
+        service.AddMember(character);
+
         // Act
-        var act = () => service.UpdateCharacterWeapon(name, newWeaponName, newDamage);
+        var act = () => service.UpdateCharacterWeapon("Gimli", "Axe", 80);
 
         // Assert
         act.Should().NotThrow();
-        service.ToString().Should().NotContain(newWeaponName);
+        service.ToString().Should().NotContain("Sword");
     }
 
     [Theory]
@@ -258,10 +272,10 @@ public class FellowshipOfTheRingServiceTests
 
         var character = new Character
                         {
-                            N = name,
-                            R = "Elf",
-                            W = new Weapon { Name = "Bow", Damage = 50, },
-                            C = "Rivendell",
+                            Name = name,
+                            Race = "Elf",
+                            Weapon = new Weapon { Name = "Bow", Damage = 50, },
+                            CurrentRegion = "Rivendell",
                         };
 
         service.AddMember(character);

@@ -1,57 +1,13 @@
-namespace LordOfTheRings;
+using LordOfTheRings;
+
 public class FellowshipOfTheRingService
 {
     private readonly List<Character> _members = new();
 
     public void AddMember(Character character)
     {
-        if (character == null)
-        {
-            throw new ArgumentNullException(nameof(character), "Character cannot be null.");
-        }
-
-        if (string.IsNullOrWhiteSpace(character.N))
-        {
-            throw new ArgumentException("Character must have a name.");
-        }
-
-        if (string.IsNullOrWhiteSpace(character.R))
-        {
-            throw new ArgumentException("Character must have a race.");
-        }
-
-        if (character.W == null)
-        {
-            throw new ArgumentException("Character must have a weapon.");
-        }
-
-        if (string.IsNullOrWhiteSpace(character.W.Name))
-        {
-            throw new ArgumentException("A weapon must have a name.");
-        }
-
-        if (character.W.Damage <= 0)
-        {
-            throw new ArgumentException("A weapon must have a damage level.");
-        }
-
-        var exists = false;
-
-        foreach (var member in _members)
-        {
-            if (member.N == character.N)
-            {
-                exists = true;
-
-                break;
-            }
-        }
-
-        if (exists)
-        {
-            throw new InvalidOperationException(
-                "A character with the same name already exists in the fellowship.");
-        }
+        ValidateCharacter(character);
+        EnsureUniqueCharacterName(character.Name);
 
         _members.Add(character);
     }
@@ -60,54 +16,27 @@ public class FellowshipOfTheRingService
     {
         foreach (string name in memberNames)
         {
-            foreach (var character in _members)
-            {
-                if (character.N == name)
-                {
-                    if (character.C == "Mordor"
-                        && region != "Mordor")
-                    {
-                        throw new InvalidOperationException(
-                            $"Cannot move {character.N} from Mordor to {region}. Reason: There is no coming back from Mordor.");
-                    }
-
-                    character.C = region;
-
-                    if (region != "Mordor")
-                    {
-                        Console.WriteLine($"{character.N} moved to {region}.");
-                    }
-                    else
-                    {
-                        Console.WriteLine($"{character.N} moved to {region} 💀.");
-                    }
-                }
-            }
+            var character = GetCharacterByName(name);
+            ValidateMoveToRegion(character, region);
+            character.CurrentRegion = region;
+            PrintMoveMessage(character, region);
         }
     }
 
     public void PrintMembersInRegion(string region)
     {
-        var charactersInRegion = new List<Character>();
+        var charactersInRegion = _members.Where(c => c.CurrentRegion == region).ToList();
 
-        foreach (var character in _members)
-        {
-            if (character.C == region)
-            {
-                charactersInRegion.Add(character);
-            }
-        }
-
-        if (charactersInRegion.Count > 0)
+        if (charactersInRegion.Any())
         {
             Console.WriteLine($"Members in {region}:");
 
             foreach (var character in charactersInRegion)
             {
-                Console.WriteLine($"{character.N} ({character.R}) with {character.W.Name}");
+                Console.WriteLine($"{character.Name} ({character.Race}) with {character.Weapon.Name}");
             }
         }
-        else if (charactersInRegion.Count == 0)
+        else
         {
             Console.WriteLine($"No members in {region}");
         }
@@ -115,52 +44,101 @@ public class FellowshipOfTheRingService
 
     public void RemoveMember(string name)
     {
-        Character characterToRemove = null;
-
-        foreach (var character in _members)
-        {
-            if (character.N == name)
-            {
-                characterToRemove = character;
-
-                break;
-            }
-        }
-
-        if (characterToRemove == null)
-        {
-            throw new InvalidOperationException($"No character with the name '{name}' exists in the fellowship.");
-        }
-
-        _members.Remove(characterToRemove);
+        var character = GetCharacterByName(name);
+        _members.Remove(character);
     }
 
     public override string ToString()
     {
-        var result = "Fellowship of the Ring Members:\n";
-
-        foreach (var member in _members)
-        {
-            result += $"{member.N} ({member.R}) with {member.W.Name} in {member.C}" + "\n";
-        }
-
-        return result;
+        return "Fellowship of the Ring Members:\n"
+               + string.Join("\n",
+                             _members.Select(m =>
+                                                 $"{m.Name} ({m.Race}) with {m.Weapon.Name} in {m.CurrentRegion}"));
     }
 
-    public void UpdateCharacterWeapon(string name, string newWeapon, int damage)
+    public void UpdateCharacterWeapon(string name, string newWeaponName, int damage)
     {
-        foreach (var character in _members)
-        {
-            if (character.N == name)
-            {
-                character.W = new Weapon
-                              {
-                                  Name = newWeapon,
-                                  Damage = damage,
-                              };
+        var character = GetCharacterByName(name);
 
-                break;
-            }
+        character.Weapon = new Weapon
+                           {
+                               Name = newWeaponName,
+                               Damage = damage,
+                           };
+    }
+
+    private void EnsureUniqueCharacterName(string name)
+    {
+        if (_members.Any(m => m.Name == name))
+        {
+            throw new InvalidOperationException($"A character with the name '{name}' already exists in the fellowship.");
+        }
+    }
+
+    private Character GetCharacterByName(string name)
+    {
+        var character = _members.FirstOrDefault(c => c.Name == name);
+
+        if (character == null)
+        {
+            throw new InvalidOperationException($"No character with the name '{name}' exists in the fellowship.");
+        }
+
+        return character;
+    }
+
+    private void PrintMoveMessage(Character character, string region)
+    {
+        if (region == "Mordor")
+        {
+            Console.WriteLine($"{character.Name} moved to {region} 💀.");
+        }
+        else
+        {
+            Console.WriteLine($"{character.Name} moved to {region}.");
+        }
+    }
+
+    private void ValidateCharacter(Character character)
+    {
+        if (character == null)
+        {
+            throw new ArgumentNullException(nameof(character), "Character cannot be null.");
+        }
+
+        if (string.IsNullOrWhiteSpace(character.Name))
+        {
+            throw new ArgumentException("Character must have a name.");
+        }
+
+        if (string.IsNullOrWhiteSpace(character.Race))
+        {
+            throw new ArgumentException("Character must have a race.");
+        }
+
+        if (character.Weapon == null)
+        {
+            throw new ArgumentException("Character must have a weapon.");
+        }
+
+        if (string.IsNullOrWhiteSpace(character.Weapon.Name))
+        {
+            throw new ArgumentException("A weapon must have a name.");
+        }
+
+        if (character.Weapon.Damage <= 0)
+        {
+            throw new ArgumentException("A weapon must have a damage level.");
+        }
+    }
+
+    private void ValidateMoveToRegion(Character character, string region)
+    {
+        if (character.CurrentRegion == "Mordor"
+            && region != "Mordor")
+        {
+            throw new InvalidOperationException(
+                $"Cannot move {character.Name} from Mordor to {region}. Reason: There is no coming back from Mordor.");
         }
     }
 }

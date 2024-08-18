@@ -1,10 +1,8 @@
-namespace LordOfTheRings
+namespace LordOfTheRings;
+public sealed class Character
 {
-    public sealed class Character
-    {
-        public string N { get; set; }
-        public string R { get; set; }
-        public Weapon W { get; set; }
-        public string C { get; set; } = "Shire";
-    }
+    public string CurrentRegion { get; set; } = "Shire";
+    public string Name { get; set; }
+    public string Race { get; set; }
+    public Weapon Weapon { get; set; }
 }

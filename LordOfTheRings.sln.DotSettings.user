@@ -3,8 +3,13 @@
 	
 	<s:String x:Key="/Default/Environment/UnitTesting/CreateUnitTestDialog/TestProjectMapping/=50AB25CC_002DCD69_002D407A_002DA8A4_002D172EFA93B2E9/@EntryIndexedValue">C76CA6B1-E423-4439-BA2F-8467E676752D</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/CreateUnitTestDialog/TestTemplateMapping/=xUnit/@EntryIndexedValue">33ff99d8-b1ad-4ed5-a4fd-376b97c2c841</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=6fdada11_002Df0cf_002D4dfd_002D89d1_002D61f55c06b0ca/@EntryIndexedValue">&lt;SessionState ContinuousTestingIsOn="True" ContinuousTestingMode="1" IsActive="True" Name="FellowshipOfTheRingServiceTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=6fdada11_002Df0cf_002D4dfd_002D89d1_002D61f55c06b0ca/@EntryIndexedValue">&lt;SessionState ContinuousTestingIsOn="True" ContinuousTestingMode="1" Name="FellowshipOfTheRingServiceTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;xUnit::C76CA6B1-E423-4439-BA2F-8467E676752D::net8.0::LordOfTheRings.Tests.FellowshipOfTheRingServiceTests&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=dafe8609_002D2907_002D4a24_002D988f_002D6f5befa61c73/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="UpdateCharacterWeapon_CharacterDoesNotExist_DoesNotThrow" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::C76CA6B1-E423-4439-BA2F-8467E676752D::net8.0::LordOfTheRings.Tests.FellowshipOfTheRingServiceTests.UpdateCharacterWeapon_CharacterDoesNotExist_DoesNotThrow&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
