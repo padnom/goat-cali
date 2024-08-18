@@ -98,4 +98,12 @@ Modified Fellowship and FellowshipTests classes to be sealed. Renamed Fellowship
 Updated FellowshipOfTheRingServiceTests to remove hasMembers parameter. Enhanced readme.md with new class and method documentation.
 Updated solution settings for code inspection highlighting.
 
+### Step 6
+
+Important: I should added a Golden Test for the program.cs
+In order to be sure that the program.cs is working as expected.
+
+feat: update FellowshipOfTheRingService
+Added unit tests for FellowshipOfTheRingService in ProgramTest.cs. 
+
 
