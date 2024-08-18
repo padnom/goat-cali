@@ -26,8 +26,8 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\LordOfTheRings.App\LordOfTheRings.App.csproj"/>
-        <ProjectReference Include="..\LordOfTheRings\LordOfTheRings.csproj"/>
+        <ProjectReference Include="..\..\src\LordOfTheRings\LordOfTheRings.csproj"/>
     </ItemGroup>
+
 
 </Project>

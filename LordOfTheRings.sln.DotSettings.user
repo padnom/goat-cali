@@ -17,5 +17,5 @@
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=eddddbca_002D79bb_002D41cd_002D9257_002D14acb6c35258/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="CharacterValidationTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;Project Location="C:\Dev\Repos\Perso\goat-cali\LordOfTheRings.UnitTests" Presentation="&amp;lt;LordOfTheRings.UnitTests&amp;gt;" /&gt;&#xD;
+  &lt;Project Location="C:\Dev\Repos\Perso\goat-cali\tests\LordOfTheRings.UnitTests" Presentation="&amp;lt;tests&amp;gt;\&amp;lt;LordOfTheRings.UnitTests&amp;gt;" /&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

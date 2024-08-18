@@ -205,7 +205,7 @@ public sealed class FellowshipOfTheRingServiceTests
         service.AddMember(character2Result.Value);
 
         // Act
-        var act = () => service.PrintMembersInRegion(region);
+        Func<string> act = () => service.GetMembersInRegion(region);
 
         // Assert
         act.Should().NotThrow();

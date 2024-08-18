@@ -58,17 +58,18 @@ public class ProgramTest
             fellowshipOfTheRingService.MoveMembersToRegion(group4, "Mordor").HandleResult();
             fellowshipOfTheRingService.MoveMembersToRegion(group4, "Shire").HandleResult();
 
-            fellowshipOfTheRingService.PrintMembersInRegion("Rivendell");
-            fellowshipOfTheRingService.PrintMembersInRegion("Moria");
-            fellowshipOfTheRingService.PrintMembersInRegion("Lothlorien");
-            fellowshipOfTheRingService.PrintMembersInRegion("Mordor");
-            fellowshipOfTheRingService.PrintMembersInRegion("Shire");
+            Console.WriteLine(fellowshipOfTheRingService.GetMembersInRegion("Rivendell"));
+            Console.WriteLine(fellowshipOfTheRingService.GetMembersInRegion("Moria"));
+            Console.WriteLine(fellowshipOfTheRingService.GetMembersInRegion("Lothlorien"));
+            Console.WriteLine(fellowshipOfTheRingService.GetMembersInRegion("Mordor"));
+            Console.WriteLine(fellowshipOfTheRingService.GetMembersInRegion("Shire"));
 
             fellowshipOfTheRingService.RemoveMember("Frodo").HandleResult();
             fellowshipOfTheRingService.RemoveMember("Sam").HandleResult();
 
-            // Debugging: Print the actual output to see what is different
             string actualOutput = sw.ToString().Replace("\r\n", "\n").Trim();
+
+            Console.WriteLine("=== Actual Output ===");
             Console.WriteLine(actualOutput);
 
             // Assert
@@ -84,14 +85,15 @@ public class ProgramTest
                 + "Gimli (Dwarf) with Axe in Shire\n"
                 + "Gandalf the 🐐 (Wizard) with Staff in Shire\n"
                 + "Operation failed: Cannot move Frodo from Mordor to Shire. Reason: There is no coming back from Mordor.\n"
-                + "Members in Rivendell:\n"
+                + "Members in Rivendell:\n\n"
                 + "No members in Moria\n"
                 + "No members in Lothlorien\n"
                 + "No members in Mordor\n"
                 + "Members in Shire:";
 
             string expectedOutputNormalized = expectedOutput.Replace("\r\n", "\n").Trim();
-            actualOutput.Should().Be(expectedOutputNormalized);
+            string actualOutputNormalized = actualOutput.Replace("\r\n", "\n").Trim();
+            actualOutputNormalized.Should().Be(expectedOutputNormalized, "the actual output should match the expected output.");
         }
     }
 }

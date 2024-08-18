@@ -46,11 +46,11 @@ var group4 = new List<string> { "Frodo", "Sam", };
 fellowshipOfTheRingService.MoveMembersToRegion(group4, "Mordor").HandleResult();
 fellowshipOfTheRingService.MoveMembersToRegion(group4, "Shire").HandleResult();
 
-fellowshipOfTheRingService.PrintMembersInRegion("Rivendell");
-fellowshipOfTheRingService.PrintMembersInRegion("Moria");
-fellowshipOfTheRingService.PrintMembersInRegion("Lothlorien");
-fellowshipOfTheRingService.PrintMembersInRegion("Mordor");
-fellowshipOfTheRingService.PrintMembersInRegion("Shire");
+Console.WriteLine(fellowshipOfTheRingService.GetMembersInRegion("Rivendell"));
+Console.WriteLine(fellowshipOfTheRingService.GetMembersInRegion("Moria"));
+Console.WriteLine(fellowshipOfTheRingService.GetMembersInRegion("Lothlorien"));
+Console.WriteLine(fellowshipOfTheRingService.GetMembersInRegion("Mordor"));
+Console.WriteLine(fellowshipOfTheRingService.GetMembersInRegion("Shire"));
 
 fellowshipOfTheRingService.RemoveMember("Frodo").HandleResult();
 fellowshipOfTheRingService.RemoveMember("Sam").HandleResult();

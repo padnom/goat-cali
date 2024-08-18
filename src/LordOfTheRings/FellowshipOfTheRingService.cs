@@ -5,24 +5,23 @@ public sealed class FellowshipOfTheRingService
 
     public Result AddMember(Character character) => _fellowship.AddMember(character);
 
-    public Result MoveMembersToRegion(List<string> memberNames, string region) => _fellowship.MoveMembersToRegion(memberNames, region);
-
-    public void PrintMembersInRegion(string region)
+    public string GetMembersInRegion(string region)
     {
         List<Character> charactersInRegion = _fellowship.GetMembersInRegion(region);
 
-        if (!charactersInRegion.Count.Equals(0))
+        if (charactersInRegion.Count != 0)
         {
-            Console.WriteLine($"No members in {region}");
-
-            return;
+            return $"No members in {region}";
         }
 
-        Console.WriteLine($"Members in {region}:");
+        var members = charactersInRegion
+                      .Select(character => $"{character.Name} ({character.Race}) with {character.Weapon.Name}")
+                      .ToList();
 
-        charactersInRegion.ForEach(character =>
-                                       Console.WriteLine($"{character.Name} ({character.Race}) with {character.Weapon.Name}"));
+        return $"Members in {region}:\n{string.Join("\n", members)}";
     }
+
+    public Result MoveMembersToRegion(List<string> memberNames, string region) => _fellowship.MoveMembersToRegion(memberNames, region);
 
     public Result RemoveMember(string name) => _fellowship.RemoveMember(name);
 
