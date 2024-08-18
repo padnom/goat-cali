@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
 
 namespace LordOfTheRings.Tests;
-public class CharacterTests
+public sealed class CharacterTests
 {
     [Theory]
     [InlineData(null, "Hobbit", "Sting", 10, "Character name must not be empty.")]

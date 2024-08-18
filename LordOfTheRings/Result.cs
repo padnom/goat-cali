@@ -14,7 +14,7 @@ public class Result
 
     public static Result Success() => new(true, string.Empty);
 }
-public class Result<T> : Result
+public sealed class Result<T> : Result
 {
     public T Value { get; }
 

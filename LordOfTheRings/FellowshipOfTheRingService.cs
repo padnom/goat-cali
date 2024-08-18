@@ -1,8 +1,7 @@
-using LordOfTheRings;
-
-public class FellowshipOfTheRingService
+namespace LordOfTheRings;
+public sealed class FellowshipOfTheRingService
 {
-    private readonly List<Character> _members = new();
+    private readonly List<Character> _members = [];
 
     public Result AddMember(Character character)
     {
@@ -18,11 +17,9 @@ public class FellowshipOfTheRingService
             return validationResult;
         }
 
-        var duplicateCheck = EnsureUniqueCharacterName(character.Name);
-
-        if (!duplicateCheck.IsSuccess)
+        if (_members.Any(m => m.Name == character.Name))
         {
-            return duplicateCheck;
+            return Result.Failure($"A character with the name '{character.Name}' already exists in the fellowship.");
         }
 
         _members.Add(character);
@@ -41,9 +38,7 @@ public class FellowshipOfTheRingService
                 return characterResult;
             }
 
-            var character = characterResult.Value;
-
-            var moveResult = character.MoveToRegion(region);
+            var moveResult = characterResult.Value.MoveToRegion(region);
 
             if (!moveResult.IsSuccess)
             {
@@ -58,19 +53,18 @@ public class FellowshipOfTheRingService
     {
         var charactersInRegion = _members.Where(c => c.CurrentRegion == region).ToList();
 
-        if (charactersInRegion.Any())
-        {
-            Console.WriteLine($"Members in {region}:");
-
-            foreach (var character in charactersInRegion)
-            {
-                Console.WriteLine($"{character.Name} ({character.Race}) with {character.Weapon.Name}");
-            }
-        }
-        else
+        if (charactersInRegion.Count == 0)
         {
             Console.WriteLine($"No members in {region}");
+
+            return;
         }
+
+        Console.WriteLine($"Members in {region}:");
+
+        charactersInRegion.ForEach(character =>
+                                       Console.WriteLine($"{character.Name} ({character.Race}) with {character.Weapon.Name}")
+        );
     }
 
     public Result RemoveMember(string name)
@@ -89,8 +83,7 @@ public class FellowshipOfTheRingService
 
     public override string ToString()
     {
-        return "Fellowship of the Ring Members:\n"
-               + string.Join("\n", _members.Select(m => $"{m.Name} ({m.Race}) with {m.Weapon.Name} in {m.CurrentRegion}"));
+        return "Fellowship of the Ring Members:\n" + string.Join("\n", _members.Select(m => $"{m.Name} ({m.Race}) with {m.Weapon.Name} in {m.CurrentRegion}"));
     }
 
     public Result UpdateCharacterWeapon(string name, string newWeaponName, int damage)
@@ -102,30 +95,15 @@ public class FellowshipOfTheRingService
             return characterResult;
         }
 
-        var character = characterResult.Value;
-
-        return character.UpdateWeapon(newWeaponName, damage);
-    }
-
-    private Result EnsureUniqueCharacterName(string name)
-    {
-        if (_members.Any(m => m.Name == name))
-        {
-            return Result.Failure($"A character with the name '{name}' already exists in the fellowship.");
-        }
-
-        return Result.Success();
+        return characterResult.Value.UpdateWeapon(newWeaponName, damage);
     }
 
     private Result<Character> GetCharacterByName(string name)
     {
-        var character = _members.FirstOrDefault(c => c.Name == name);
+        var character = _members.Find(c => c.Name == name);
 
-        if (character == null)
-        {
-            return Result<Character>.Failure($"No character with the name '{name}' exists in the fellowship.");
-        }
-
-        return Result<Character>.Success(character);
+        return character != null
+            ? Result<Character>.Success(character)
+            : Result<Character>.Failure($"No character with the name '{name}' exists in the fellowship.");
     }
 }

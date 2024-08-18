@@ -1,5 +1,5 @@
 namespace LordOfTheRings;
-public class Weapon
+public sealed class Weapon
 {
     public int Damage { get; }
     public string Name { get; }

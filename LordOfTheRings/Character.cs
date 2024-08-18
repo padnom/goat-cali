@@ -1,6 +1,6 @@
 using LordOfTheRings;
 
-public class Character
+public sealed class Character
 {
     public string CurrentRegion { get; private set; }
     public string Name { get; }

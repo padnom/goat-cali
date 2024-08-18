@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
 
 namespace LordOfTheRings.Tests;
-public class FellowshipOfTheRingServiceTests
+public sealed class FellowshipOfTheRingServiceTests
 {
     [Theory]
     [InlineData("Frodo", "Hobbit", "Sting", 10, "Shire")]
