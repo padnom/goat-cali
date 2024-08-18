@@ -1,4 +1,6 @@
-﻿namespace LordOfTheRings.Tests;
+﻿using FluentAssertions;
+
+namespace LordOfTheRings.Tests;
 public class FellowshipTests
 {
     [Fact]

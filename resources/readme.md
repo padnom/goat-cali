@@ -52,6 +52,7 @@ Instead to throw exception I want to use resultpattern.and move logic inside Cha
 ``` 
 
 #### Green Test:
+
 Added `AddMember_WithDuplicateName_ShouldReturnFailureResult` test to `FellowshipOfTheRingServiceTests` to ensure duplicate members are handled correctly.
 
 - Refactor for Result pattern and add comprehensive tests
@@ -60,7 +61,19 @@ Added `AddMember_WithDuplicateName_ShouldReturnFailureResult` test to `Fellowshi
 - Added `CharacterTest.cs` for `Character` class validation.
 
 #### Refactor:
+
 refactor: classes, add tests, and improve error handling
 Refactored multiple classes to use the `sealed` keyword for better performance and maintainability.
 Implemented the Result pattern for more robust error handling.
+
+### Step 5
+
+#### Red Test:
+
+test: Red - add unit test for Fellowship's AddMember method
+Added the `FellowshipTests` class. Implemented the `AddMember_ValidCharacter_ShouldAddSuccessfully` test method, which verifies that a valid character can
+be added to a `Fellowship` instance.
+The test arranges a new `Fellowship` and `Character` with a `Weapon`, acts by adding the character to the fellowship, and asserts the success of the addition
+and the correct string representation of the fellowship.
+
 
