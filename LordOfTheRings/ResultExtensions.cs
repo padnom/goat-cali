@@ -1,5 +1,4 @@
-﻿using LordOfTheRings;
-
+﻿namespace LordOfTheRings;
 public static class ResultExtensions
 {
     public static void HandleResult(this Result result)

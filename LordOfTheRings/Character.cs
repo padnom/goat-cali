@@ -1,5 +1,4 @@
-using LordOfTheRings;
-
+namespace LordOfTheRings;
 public sealed class Character
 {
     public string CurrentRegion { get; private set; }
@@ -25,12 +24,7 @@ public sealed class Character
         var character = new Character(name, race, weapon.Value, currentRegion);
         var validationResult = character.Validate();
 
-        if (!validationResult.IsSuccess)
-        {
-            return Result<Character>.Failure(validationResult.Error);
-        }
-
-        return Result<Character>.Success(character);
+        return !validationResult.IsSuccess ? Result<Character>.Failure(validationResult.Error) : Result<Character>.Success(character);
     }
 
     public Result MoveToRegion(string newRegion)
@@ -69,11 +63,6 @@ public sealed class Character
             return Result.Failure("Character name must not be empty.");
         }
 
-        if (string.IsNullOrWhiteSpace(Race))
-        {
-            return Result.Failure("Character race must not be empty.");
-        }
-
-        return Result.Success();
+        return string.IsNullOrWhiteSpace(Race) ? Result.Failure("Character race must not be empty.") : Result.Success();
     }
 }

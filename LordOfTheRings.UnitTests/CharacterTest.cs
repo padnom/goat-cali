@@ -24,7 +24,7 @@ public sealed class CharacterTests
 
             if (!weaponResult.IsSuccess)
             {
-                weaponResult.Error.Should().Be(expectedMessage); // Directly assert here if Weapon creation fails
+                weaponResult.Error.Should().Be(expectedMessage);
 
                 return;
             }
