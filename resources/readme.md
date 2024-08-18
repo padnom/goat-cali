@@ -41,6 +41,15 @@ Modified `FellowshipOfTheRingService` to:
 - Add a method to update a character's weapon.
 - Refactor the `ToString` method to reflect the new property names.
 
+### Step 4
+
+Red Test:
+
+Here What I asked to Gpt4-0
+
+``` 
+Instead to throw exception I want to use resultpattern.and move logic inside Character Entitiy.Use TDD.With A red test then a green tests
+``` 
 
 
 

@@ -113,6 +113,23 @@ public class FellowshipOfTheRingServiceTests
         service.ToString().Should().Contain(expectedOutput);
     }
 
+    [Fact]
+    public void AddMember_WithDuplicateName_ShouldReturnFailureResult()
+    {
+        // Arrange
+        var service = new FellowshipOfTheRingService();
+        var character = new Character("Frodo", "Hobbit", new Weapon("Sting", 10), "Shire");
+
+        service.AddMember(character);
+
+        // Act
+        var result = service.AddMember(character);
+
+        // Assert
+        result.IsSuccess.Should().BeFalse();
+        result.Error.Should().Be("A character with the name 'Frodo' already exists in the fellowship.");
+    }
+
     [Theory]
     [InlineData("Frodo", "Mordor", "Shire", "Cannot move Frodo from Mordor to Shire. Reason: There is no coming back from Mordor.")]
     public void MoveMembersToRegion_MovingFromMordor_ThrowsException(
