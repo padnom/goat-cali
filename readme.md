@@ -1,4 +1,4 @@
-# Kata
+~~# Kata
 
 ## First Step Create Unit Test For all services with Copilot
 
@@ -105,5 +105,14 @@ In order to be sure that the program.cs is working as expected.
 
 feat: update FellowshipOfTheRingService
 Added unit tests for FellowshipOfTheRingService in ProgramTest.cs. 
+
+
+refactor :  solution and introduce FellowshipManager class
+
+- Updated `LordOfTheRings.sln` to remove `SolutionItems` from `src` and add a new `ressources` project.
+- Introduced `FellowshipManager` class in `FellowshipManager.cs` to encapsulate character and region management logic.
+- Refactored `Program.cs` to use `FellowshipManager`, simplifying main execution.
+- Updated `LordOfTheRings.UnitTests.csproj` to include a reference to `LordOfTheRings.App`.
+- Refactored `ProgramTest.cs` to use `FellowshipManager` and updated test methods accordingly.~~
 
 

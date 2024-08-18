@@ -1,10 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{250D9DD6-A95C-4BC6-9E2A-5A8DC6FB5478}"
-	ProjectSection(SolutionItems) = preProject
-		readme.md = readme.md
-		src\resources\coverage.jpeg = src\resources\coverage.jpeg
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{8ADD243D-273A-4A07-87FA-FBAE7AB4F576}"
 EndProject
@@ -13,6 +9,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LordOfTheRings.App", "src\LordOfTheRings.App\LordOfTheRings.App.csproj", "{6080B54C-2BDC-414E-B1AB-300B169A9A55}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LordOfTheRings.UnitTests", "tests\LordOfTheRings.UnitTests\LordOfTheRings.UnitTests.csproj", "{0D365DAD-3EA5-4898-A951-8A0A565D3CEE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ressources", "ressources", "{FE5D9BC1-A827-4993-895D-6AD160E4B1F4}"
+	ProjectSection(SolutionItems) = preProject
+		src\resources\coverage.jpeg = src\resources\coverage.jpeg
+		readme.md = readme.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,5 +39,6 @@ Global
 		{3D64776C-81D7-4233-8901-BCC3127F0CD9} = {250D9DD6-A95C-4BC6-9E2A-5A8DC6FB5478}
 		{6080B54C-2BDC-414E-B1AB-300B169A9A55} = {250D9DD6-A95C-4BC6-9E2A-5A8DC6FB5478}
 		{0D365DAD-3EA5-4898-A951-8A0A565D3CEE} = {8ADD243D-273A-4A07-87FA-FBAE7AB4F576}
+		{FE5D9BC1-A827-4993-895D-6AD160E4B1F4} = {250D9DD6-A95C-4BC6-9E2A-5A8DC6FB5478}
 	EndGlobalSection
 EndGlobal
