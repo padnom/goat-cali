@@ -51,5 +51,7 @@ Here What I asked to Gpt4-0
 Instead to throw exception I want to use resultpattern.and move logic inside Character Entitiy.Use TDD.With A red test then a green tests
 ``` 
 
+Added `AddMember_WithDuplicateName_ShouldReturnFailureResult` test to `FellowshipOfTheRingServiceTests` to ensure duplicate members are handled correctly. 
+
 
 

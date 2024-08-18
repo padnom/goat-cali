@@ -4,7 +4,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LordOfTheRings", "LordOfThe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LordOfTheRings.App", "LordOfTheRings.App\LordOfTheRings.App.csproj", "{493627F6-F862-4CFE-8F53-47158C89F71F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LordOfTheRings.Tests", "LordOfTheRings.Tests\LordOfTheRings.Tests.csproj", "{C76CA6B1-E423-4439-BA2F-8467E676752D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LordOfTheRings.UnitTests", "LordOfTheRings.UnitTests\LordOfTheRings.UnitTests.csproj", "{C76CA6B1-E423-4439-BA2F-8467E676752D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

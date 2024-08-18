@@ -4,23 +4,54 @@ public class FellowshipOfTheRingService
 {
     private readonly List<Character> _members = new();
 
-    public void AddMember(Character character)
+    public Result AddMember(Character character)
     {
-        ValidateCharacter(character);
-        EnsureUniqueCharacterName(character.Name);
+        if (character == null)
+        {
+            return Result.Failure("Character cannot be null.");
+        }
+
+        var validationResult = character.Validate();
+
+        if (!validationResult.IsSuccess)
+        {
+            return validationResult;
+        }
+
+        var duplicateCheck = EnsureUniqueCharacterName(character.Name);
+
+        if (!duplicateCheck.IsSuccess)
+        {
+            return duplicateCheck;
+        }
 
         _members.Add(character);
+
+        return Result.Success();
     }
 
-    public void MoveMembersToRegion(List<string> memberNames, string region)
+    public Result MoveMembersToRegion(List<string> memberNames, string region)
     {
         foreach (string name in memberNames)
         {
-            var character = GetCharacterByName(name);
-            ValidateMoveToRegion(character, region);
-            character.CurrentRegion = region;
-            PrintMoveMessage(character, region);
+            Result<Character> characterResult = GetCharacterByName(name);
+
+            if (!characterResult.IsSuccess)
+            {
+                return characterResult;
+            }
+
+            var character = characterResult.Value;
+
+            var moveResult = character.MoveToRegion(region);
+
+            if (!moveResult.IsSuccess)
+            {
+                return moveResult;
+            }
         }
+
+        return Result.Success();
     }
 
     public void PrintMembersInRegion(string region)
@@ -42,103 +73,59 @@ public class FellowshipOfTheRingService
         }
     }
 
-    public void RemoveMember(string name)
+    public Result RemoveMember(string name)
     {
-        var character = GetCharacterByName(name);
-        _members.Remove(character);
+        Result<Character> characterResult = GetCharacterByName(name);
+
+        if (!characterResult.IsSuccess)
+        {
+            return characterResult;
+        }
+
+        _members.Remove(characterResult.Value);
+
+        return Result.Success();
     }
 
     public override string ToString()
     {
         return "Fellowship of the Ring Members:\n"
-               + string.Join("\n",
-                             _members.Select(m =>
-                                                 $"{m.Name} ({m.Race}) with {m.Weapon.Name} in {m.CurrentRegion}"));
+               + string.Join("\n", _members.Select(m => $"{m.Name} ({m.Race}) with {m.Weapon.Name} in {m.CurrentRegion}"));
     }
 
-    public void UpdateCharacterWeapon(string name, string newWeaponName, int damage)
+    public Result UpdateCharacterWeapon(string name, string newWeaponName, int damage)
     {
-        var character = GetCharacterByName(name);
+        Result<Character> characterResult = GetCharacterByName(name);
 
-        character.Weapon = new Weapon
-                           {
-                               Name = newWeaponName,
-                               Damage = damage,
-                           };
+        if (!characterResult.IsSuccess)
+        {
+            return characterResult;
+        }
+
+        var character = characterResult.Value;
+
+        return character.UpdateWeapon(newWeaponName, damage);
     }
 
-    private void EnsureUniqueCharacterName(string name)
+    private Result EnsureUniqueCharacterName(string name)
     {
         if (_members.Any(m => m.Name == name))
         {
-            throw new InvalidOperationException($"A character with the name '{name}' already exists in the fellowship.");
+            return Result.Failure($"A character with the name '{name}' already exists in the fellowship.");
         }
+
+        return Result.Success();
     }
 
-    private Character GetCharacterByName(string name)
+    private Result<Character> GetCharacterByName(string name)
     {
         var character = _members.FirstOrDefault(c => c.Name == name);
 
         if (character == null)
         {
-            throw new InvalidOperationException($"No character with the name '{name}' exists in the fellowship.");
+            return Result<Character>.Failure($"No character with the name '{name}' exists in the fellowship.");
         }
 
-        return character;
-    }
-
-    private void PrintMoveMessage(Character character, string region)
-    {
-        if (region == "Mordor")
-        {
-            Console.WriteLine($"{character.Name} moved to {region} 💀.");
-        }
-        else
-        {
-            Console.WriteLine($"{character.Name} moved to {region}.");
-        }
-    }
-
-    private void ValidateCharacter(Character character)
-    {
-        if (character == null)
-        {
-            throw new ArgumentNullException(nameof(character), "Character cannot be null.");
-        }
-
-        if (string.IsNullOrWhiteSpace(character.Name))
-        {
-            throw new ArgumentException("Character must have a name.");
-        }
-
-        if (string.IsNullOrWhiteSpace(character.Race))
-        {
-            throw new ArgumentException("Character must have a race.");
-        }
-
-        if (character.Weapon == null)
-        {
-            throw new ArgumentException("Character must have a weapon.");
-        }
-
-        if (string.IsNullOrWhiteSpace(character.Weapon.Name))
-        {
-            throw new ArgumentException("A weapon must have a name.");
-        }
-
-        if (character.Weapon.Damage <= 0)
-        {
-            throw new ArgumentException("A weapon must have a damage level.");
-        }
-    }
-
-    private void ValidateMoveToRegion(Character character, string region)
-    {
-        if (character.CurrentRegion == "Mordor"
-            && region != "Mordor")
-        {
-            throw new InvalidOperationException(
-                $"Cannot move {character.Name} from Mordor to {region}. Reason: There is no coming back from Mordor.");
-        }
+        return Result<Character>.Success(character);
     }
 }
