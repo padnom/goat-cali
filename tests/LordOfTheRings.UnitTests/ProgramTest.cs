@@ -35,12 +35,12 @@ public class ProgramTest
 
                     if (!addResult.IsSuccess)
                     {
-                        Console.WriteLine($"Failed to add character: {addResult.Error}");
+                        Console.WriteLine($"Failed to add character: {addResult.Message}");
                     }
                 }
                 else
                 {
-                    Console.WriteLine($"Character creation failed: {characterResult.Error}");
+                    Console.WriteLine($"Character creation failed: {characterResult.Message}");
                 }
             }
 
@@ -50,13 +50,13 @@ public class ProgramTest
             var group2 = new List<string> { "Merry", "Pippin", "Aragorn", "Boromir", };
             var group3 = new List<string> { "Legolas", "Gimli", "Gandalf the 🐐", };
 
-            fellowshipOfTheRingService.MoveMembersToRegion(group1, "Rivendell").HandleResult();
-            fellowshipOfTheRingService.MoveMembersToRegion(group2, "Moria").HandleResult();
-            fellowshipOfTheRingService.MoveMembersToRegion(group3, "Lothlorien").HandleResult();
+            fellowshipOfTheRingService.MoveMembersToRegion(group1, "Rivendell").HandleResult(group1, "Rivendell");
+            fellowshipOfTheRingService.MoveMembersToRegion(group2, "Moria").HandleResult(group2, "Moria");
+            fellowshipOfTheRingService.MoveMembersToRegion(group3, "Lothlorien").HandleResult(group3, "Lothlorien");
 
             var group4 = new List<string> { "Frodo", "Sam", };
-            fellowshipOfTheRingService.MoveMembersToRegion(group4, "Mordor").HandleResult();
-            fellowshipOfTheRingService.MoveMembersToRegion(group4, "Shire").HandleResult();
+            fellowshipOfTheRingService.MoveMembersToRegion(group4, "Mordor").HandleResult(group4, "Mordor");
+            fellowshipOfTheRingService.MoveMembersToRegion(group4, "Shire").HandleResult(group4, "Shire");
 
             Console.WriteLine(fellowshipOfTheRingService.GetMembersInRegion("Rivendell"));
             Console.WriteLine(fellowshipOfTheRingService.GetMembersInRegion("Moria"));
@@ -84,12 +84,32 @@ public class ProgramTest
                 + "Legolas (Elf) with Bow in Shire\n"
                 + "Gimli (Dwarf) with Axe in Shire\n"
                 + "Gandalf the 🐐 (Wizard) with Staff in Shire\n"
-                + "Operation failed: Cannot move Frodo from Mordor to Shire. Reason: There is no coming back from Mordor.\n"
-                + "Members in Rivendell:\n\n"
-                + "No members in Moria\n"
-                + "No members in Lothlorien\n"
-                + "No members in Mordor\n"
-                + "Members in Shire:";
+                + "Frodo moved to Rivendell.\n"
+                + "Sam moved to Rivendell.\n"
+                + "Merry moved to Moria.\n"
+                + "Pippin moved to Moria.\n"
+                + "Aragorn moved to Moria.\n"
+                + "Boromir moved to Moria.\n"
+                + "Legolas moved to Lothlorien.\n"
+                + "Gimli moved to Lothlorien.\n"
+                + "Gandalf the 🐐 moved to Lothlorien.\n"
+                + "Frodo moved to Mordor.\n"
+                + "Sam moved to Mordor.\n"
+                + "Cannot move Frodo from Mordor to Shire. Reason: There is no coming back from Mordor.\n"
+                + "No members in Rivendell\n"
+                + "Members in Moria:\n"
+                + "Merry (Hobbit) with Short Sword\n"
+                + "Pippin (Hobbit) with Bow\n"
+                + "Aragorn (Human) with Anduril\n"
+                + "Boromir (Human) with Sword\n"
+                + "Members in Lothlorien:\n"
+                + "Legolas (Elf) with Bow\n"
+                + "Gimli (Dwarf) with Axe\n"
+                + "Gandalf the 🐐 (Wizard) with Staff\n"
+                + "Members in Mordor:\n"
+                + "Frodo (Hobbit) with Sting\n"
+                + "Sam (Hobbit) with Dagger\n"
+                + "No members in Shire";
 
             string expectedOutputNormalized = expectedOutput.Replace("\r\n", "\n").Trim();
             string actualOutputNormalized = actualOutput.Replace("\r\n", "\n").Trim();

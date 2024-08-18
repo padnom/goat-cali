@@ -26,7 +26,7 @@ public sealed class FellowshipOfTheRingServiceTests
 
         // Assert
         result.IsSuccess.Should().BeFalse();
-        result.Error.Should().Be("A character with the name 'Frodo' already exists in the fellowship.");
+        result.Message.Should().Be("A character with the name 'Frodo' already exists in the fellowship.");
     }
 
     [Theory]
@@ -51,7 +51,7 @@ public sealed class FellowshipOfTheRingServiceTests
         // Ensure that Character creation handles null or invalid values correctly
         Result<Character> characterResult = weaponResult.IsSuccess
             ? Character.Create(name, race, weaponResult)
-            : Result<Character>.Failure(weaponResult.Error);
+            : Result<Character>.Failure(weaponResult.Message);
 
         // Act
         var result = characterResult.IsSuccess
@@ -60,7 +60,7 @@ public sealed class FellowshipOfTheRingServiceTests
 
         // Assert
         result.IsSuccess.Should().BeFalse();
-        result.Error.Should().Be(expectedMessage);
+        result.Message.Should().Be(expectedMessage);
     }
 
     [Fact]
@@ -74,7 +74,7 @@ public sealed class FellowshipOfTheRingServiceTests
 
         // Assert
         result.IsSuccess.Should().BeFalse();
-        result.Error.Should().Be("Character cannot be null.");
+        result.Message.Should().Be("Character cannot be null.");
     }
 
     [Theory]
@@ -125,7 +125,7 @@ public sealed class FellowshipOfTheRingServiceTests
 
         // Assert
         result.IsSuccess.Should().BeFalse();
-        result.Error.Should().Be(expectedMessage);
+        result.Message.Should().Be(expectedMessage);
     }
 
     [Theory]
@@ -223,7 +223,7 @@ public sealed class FellowshipOfTheRingServiceTests
 
         // Assert
         result.IsSuccess.Should().BeFalse();
-        result.Error.Should().Be(expectedMessage);
+        result.Message.Should().Be(expectedMessage);
     }
 
     [Theory]
@@ -262,7 +262,7 @@ public sealed class FellowshipOfTheRingServiceTests
 
         // Assert
         result.IsSuccess.Should().BeFalse();
-        result.Error.Should().Be("No character with the name 'Gimli' exists in the fellowship.");
+        result.Message.Should().Be("No character with the name 'Gimli' exists in the fellowship.");
     }
 
     [Theory]

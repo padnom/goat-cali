@@ -5,7 +5,26 @@ public static class ResultExtensions
     {
         if (!result.IsSuccess)
         {
-            Console.WriteLine($"Operation failed: {result.Error}");
+            Console.WriteLine($"{result.Message}");
+
+            return;
+        }
+
+        Console.WriteLine($"{result.Message}");
+    }
+
+    public static void HandleResult(this Result result, List<string> names, string region)
+    {
+        if (!result.IsSuccess)
+        {
+            Console.WriteLine($"{result.Message}");
+
+            return;
+        }
+
+        foreach (string name in names)
+        {
+            Console.WriteLine($"{name} moved to {region}.");
         }
     }
 }

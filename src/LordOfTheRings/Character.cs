@@ -18,13 +18,13 @@ public sealed class Character
     {
         if (!weapon.IsSuccess)
         {
-            return Result<Character>.Failure(weapon.Error);
+            return Result<Character>.Failure(weapon.Message);
         }
 
         var character = new Character(name, race, weapon.Value, currentRegion);
         var validationResult = character.Validate();
 
-        return !validationResult.IsSuccess ? Result<Character>.Failure(validationResult.Error) : Result<Character>.Success(character);
+        return !validationResult.IsSuccess ? Result<Character>.Failure(validationResult.Message) : Result<Character>.Success(character);
     }
 
     public Result MoveToRegion(string newRegion)
@@ -48,7 +48,7 @@ public sealed class Character
 
         if (!weaponUpdateResult.IsSuccess)
         {
-            return Result.Failure(weaponUpdateResult.Error);
+            return Result.Failure(weaponUpdateResult.Message);
         }
 
         Weapon = weaponUpdateResult.Value;

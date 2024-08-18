@@ -24,7 +24,7 @@ public sealed class CharacterTests
 
             if (!weaponResult.IsSuccess)
             {
-                weaponResult.Error.Should().Be(expectedMessage);
+                weaponResult.Message.Should().Be(expectedMessage);
 
                 return;
             }
@@ -35,7 +35,7 @@ public sealed class CharacterTests
 
         // Assert
         characterResult.IsSuccess.Should().BeFalse();
-        characterResult.Error.Should().Be(expectedMessage);
+        characterResult.Message.Should().Be(expectedMessage);
     }
 
     [Fact]
@@ -72,7 +72,7 @@ public sealed class CharacterTests
 
         // Assert
         updateResult.IsSuccess.Should().BeFalse();
-        updateResult.Error.Should().Be(expectedMessage);
+        updateResult.Message.Should().Be(expectedMessage);
     }
 
     [Theory]
@@ -88,6 +88,6 @@ public sealed class CharacterTests
 
         // Assert
         characterResult.IsSuccess.Should().BeFalse();
-        characterResult.Error.Should().Be(expectedMessage);
+        characterResult.Message.Should().Be(expectedMessage);
     }
 }

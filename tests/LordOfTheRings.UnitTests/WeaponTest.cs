@@ -13,7 +13,7 @@ public sealed class WeaponTests
 
         // Assert
         result.IsSuccess.Should().BeFalse();
-        result.Error.Should().Be("Weapon name must not be empty.");
+        result.Message.Should().Be("Weapon name must not be empty.");
     }
 
     [Theory]
@@ -26,7 +26,7 @@ public sealed class WeaponTests
 
         // Assert
         result.IsSuccess.Should().BeFalse();
-        result.Error.Should().Be("Weapon damage must be greater than zero.");
+        result.Message.Should().Be("Weapon damage must be greater than zero.");
     }
 
     [Theory]
@@ -56,7 +56,7 @@ public sealed class WeaponTests
 
         // Assert
         updateResult.IsSuccess.Should().BeFalse();
-        updateResult.Error.Should().Be("Weapon name must not be empty.");
+        updateResult.Message.Should().Be("Weapon name must not be empty.");
     }
 
     [Theory]
@@ -72,7 +72,7 @@ public sealed class WeaponTests
 
         // Assert
         updateResult.IsSuccess.Should().BeFalse();
-        updateResult.Error.Should().Be("Weapon damage must be greater than zero.");
+        updateResult.Message.Should().Be("Weapon damage must be greater than zero.");
     }
 
     [Theory]

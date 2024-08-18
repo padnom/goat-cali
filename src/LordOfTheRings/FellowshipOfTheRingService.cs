@@ -9,7 +9,7 @@ public sealed class FellowshipOfTheRingService
     {
         List<Character> charactersInRegion = _fellowship.GetMembersInRegion(region);
 
-        if (charactersInRegion.Count != 0)
+        if (charactersInRegion.Count == 0)
         {
             return $"No members in {region}";
         }
