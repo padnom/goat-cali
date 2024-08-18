@@ -1,7 +1,7 @@
 namespace LordOfTheRings;
 public class FellowshipOfTheRingService
 {
-    private readonly List<Character> members = new();
+    private readonly List<Character> _members = new();
 
     public void AddMember(Character character)
     {
@@ -37,7 +37,7 @@ public class FellowshipOfTheRingService
 
         var exists = false;
 
-        foreach (var member in members)
+        foreach (var member in _members)
         {
             if (member.N == character.N)
             {
@@ -53,14 +53,14 @@ public class FellowshipOfTheRingService
                 "A character with the same name already exists in the fellowship.");
         }
 
-        members.Add(character);
+        _members.Add(character);
     }
 
     public void MoveMembersToRegion(List<string> memberNames, string region)
     {
         foreach (string name in memberNames)
         {
-            foreach (var character in members)
+            foreach (var character in _members)
             {
                 if (character.N == name)
                 {
@@ -90,7 +90,7 @@ public class FellowshipOfTheRingService
     {
         var charactersInRegion = new List<Character>();
 
-        foreach (var character in members)
+        foreach (var character in _members)
         {
             if (character.C == region)
             {
@@ -117,7 +117,7 @@ public class FellowshipOfTheRingService
     {
         Character characterToRemove = null;
 
-        foreach (var character in members)
+        foreach (var character in _members)
         {
             if (character.N == name)
             {
@@ -132,14 +132,14 @@ public class FellowshipOfTheRingService
             throw new InvalidOperationException($"No character with the name '{name}' exists in the fellowship.");
         }
 
-        members.Remove(characterToRemove);
+        _members.Remove(characterToRemove);
     }
 
     public override string ToString()
     {
         var result = "Fellowship of the Ring Members:\n";
 
-        foreach (var member in members)
+        foreach (var member in _members)
         {
             result += $"{member.N} ({member.R}) with {member.W.Name} in {member.C}" + "\n";
         }
@@ -149,7 +149,7 @@ public class FellowshipOfTheRingService
 
     public void UpdateCharacterWeapon(string name, string newWeapon, int damage)
     {
-        foreach (var character in members)
+        foreach (var character in _members)
         {
             if (character.N == name)
             {
