@@ -6,11 +6,7 @@ public static class ResultExtensions
         if (!result.IsSuccess)
         {
             Console.WriteLine($"{result.Message}");
-
-            return;
         }
-
-        Console.WriteLine($"{result.Message}");
     }
 
     public static void HandleResult(this Result result, List<string> names, string region)

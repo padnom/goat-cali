@@ -30,13 +30,12 @@ public sealed class FellowshipManager
         {
             if (characterResult.IsSuccess)
             {
-                var addResult = _fellowshipOfTheRingService.AddMember(characterResult.Value);
-                HandleResult(addResult, $"Failed to add character: {addResult.Message}");
+                _fellowshipOfTheRingService.AddMember(characterResult.Value).HandleResult();
+
+                continue;
             }
-            else
-            {
-                Console.WriteLine($"Character creation failed: {characterResult.Message}");
-            }
+
+            Console.WriteLine($"Character creation failed: {characterResult.Message}");
         }
 
         Console.WriteLine(_fellowshipOfTheRingService.ToString());
@@ -54,15 +53,6 @@ public sealed class FellowshipManager
         DisplayMembersInRegion("Lothlorien");
         DisplayMembersInRegion("Mordor");
         DisplayMembersInRegion("Shire");
-    }
-
-    private void HandleResult(Result result, string errorMessage = null)
-    {
-        if (!result.IsSuccess
-            && errorMessage != null)
-        {
-            Console.WriteLine(errorMessage);
-        }
     }
 
     private void MoveGroupsToRegions()
@@ -83,7 +73,7 @@ public sealed class FellowshipManager
 
     private void RemoveMembers()
     {
-        HandleResult(_fellowshipOfTheRingService.RemoveMember("Frodo"), "Failed to remove Frodo");
-        HandleResult(_fellowshipOfTheRingService.RemoveMember("Sam"), "Failed to remove Sam");
+        _fellowshipOfTheRingService.RemoveMember("Frodo").HandleResult();
+        _fellowshipOfTheRingService.RemoveMember("Sam").HandleResult();
     }
 }

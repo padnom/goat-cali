@@ -4,7 +4,7 @@
 	
 	<s:String x:Key="/Default/Environment/UnitTesting/CreateUnitTestDialog/TestProjectMapping/=50AB25CC_002DCD69_002D407A_002DA8A4_002D172EFA93B2E9/@EntryIndexedValue">C76CA6B1-E423-4439-BA2F-8467E676752D</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/CreateUnitTestDialog/TestTemplateMapping/=xUnit/@EntryIndexedValue">33ff99d8-b1ad-4ed5-a4fd-376b97c2c841</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=4b7da7ba_002D14b1_002D4465_002D982c_002D174ba630aa26/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Test_FellowshipOfTheRingService_ExpectedOutput #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=4b7da7ba_002D14b1_002D4465_002D982c_002D174ba630aa26/@EntryIndexedValue">&lt;SessionState ContinuousTestingIsOn="True" ContinuousTestingMode="1" IsActive="True" Name="Test_FellowshipOfTheRingService_ExpectedOutput #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;Project Location="C:\Dev\Repos\Perso\goat-cali\tests\LordOfTheRings.UnitTests" Presentation="&amp;lt;tests&amp;gt;\&amp;lt;LordOfTheRings.UnitTests&amp;gt;" /&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=514644ba_002D8086_002D42f3_002D999d_002D5db1a80aa6de/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Test_FellowshipOfTheRingService_ExpectedOutput" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
@@ -12,7 +12,7 @@
     &lt;TestId&gt;xUnit::0D365DAD-3EA5-4898-A951-8A0A565D3CEE::net8.0::LordOfTheRings.Tests.ProgramTest.Test_FellowshipOfTheRingService_ExpectedOutput&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=6fdada11_002Df0cf_002D4dfd_002D89d1_002D61f55c06b0ca/@EntryIndexedValue">&lt;SessionState ContinuousTestingIsOn="True" ContinuousTestingMode="1" Name="FellowshipOfTheRingServiceTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=6fdada11_002Df0cf_002D4dfd_002D89d1_002D61f55c06b0ca/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="FellowshipOfTheRingServiceTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;xUnit::C76CA6B1-E423-4439-BA2F-8467E676752D::net8.0::LordOfTheRings.Tests.FellowshipOfTheRingServiceTests&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;

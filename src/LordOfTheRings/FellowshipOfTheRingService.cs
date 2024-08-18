@@ -25,7 +25,7 @@ public sealed class FellowshipOfTheRingService
 
     public Result RemoveMember(string name) => _fellowship.RemoveMember(name);
 
-    public override string ToString() => "Fellowship of the Ring Members:\n" + _fellowship;
+    public override string ToString() => "Fellowship of the Ring Members:\r\n" + _fellowship;
 
     public Result UpdateCharacterWeapon(string name, string newWeaponName, int damage)
     {
