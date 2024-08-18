@@ -1,6 +1,10 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{250D9DD6-A95C-4BC6-9E2A-5A8DC6FB5478}"
+	ProjectSection(SolutionItems) = preProject
+		readme.md = readme.md
+		src\resources\coverage.jpeg = src\resources\coverage.jpeg
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{8ADD243D-273A-4A07-87FA-FBAE7AB4F576}"
 EndProject

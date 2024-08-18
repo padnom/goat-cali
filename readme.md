@@ -7,7 +7,7 @@
 I asked to copilot base on the service to create a unit test for the service.
 The goal is to have 100% coverage for the service. Even if coverage is not the goal.
 
-![img.png](img.png)
+![coverage.jpeg](src%2Fresources%2Fcoverage.jpeg)
 
 ### Step 2
 
